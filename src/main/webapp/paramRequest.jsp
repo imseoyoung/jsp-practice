@@ -23,11 +23,11 @@
     hobby = request.getParameterValues("hobby");
     %>
     
-    이름&nbsp;:&nbsp<%= name %><br>
-    아이디&nbsp;:&nbsp<%= id %><br>
-    비밀번호&nbsp;:&nbsp<%= paswd %><br>
-    취미&nbsp;:&nbsp<%= Arrays.toString(hobby) %><br>
-    전공&nbsp;:&nbsp<%= major %><br>
-    프로토콜&nbsp;:&nbsp<%= protocol %><br>
+    이름&nbsp;:<%= name %><br>
+    아이디&nbsp;:<%= id %><br>
+    비밀번호&nbsp;:<%= paswd %><br>
+    취미&nbsp;:<%= Arrays.toString(hobby) %><br>
+    전공&nbsp;:<%= major %><br>
+    프로토콜&nbsp;:<%= protocol %><br>
 </body>
 </html>
