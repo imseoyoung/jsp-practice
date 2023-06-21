@@ -14,6 +14,7 @@
     String password = request.getParameter("pasword");
     
     Cookie cookie = new Cookie(id, password);
+    cookie.setMaxAge(60*60);
     response.addCookie(cookie);
     
     Cookie[] cookies = request.getCookies();
