@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.Enumeration" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,24 +8,23 @@
 </head>
 <body>
     <h1>Welcome</h1>
-    <!-- 쿠키 생성 -->
+    <!-- 세션 생성 -->
     <%
     String id = request.getParameter("id");
-    String password = request.getParameter("pasword");
+    String password = request.getParameter("password");
     
-    Cookie cookie = new Cookie(id, password);
-    cookie.setMaxAge(60*60);
-    response.addCookie(cookie);
-    
-    Cookie[] cookies = request.getCookies();
-    out.println("현재 실행된 쿠키의 개수 => "+ cookies.length + "<br>");
-    
-    for (int i = 0; i < cookies.length; i++) {
-        out.println("설정된 쿠키의 속성 이름(name[" + i + "]): "+ cookies[i].getName() + "<br>");
-        out.println("설정된 쿠키의 속성 값(value[" + i + "]): "+ cookies[i].getValue() + "<br>");
-        out.println("-------------------------------------------------------------------" + "<br>");
+    session.setAttribute("id", id);
+    session.setAttribute("password", password);
+    session.setMaxInactiveInterval(60 * 60);
+    %>
+    <%
+    Enumeration<String> attributeNames = session.getAttributeNames();
+    while (attributeNames.hasMoreElements()) {
+        String attributeName = attributeNames.nextElement();
+        out.println("설정된 세션의 속성 이름(" + attributeName + "): " + session.getAttribute(attributeName) + "<br>");
+        out.println("-----------------------------------------------" + "<br>");
     }
     %>
-    <a href="logout.jsp">logout</a>
+    <a href="logout.jsp">Logout</a>
 </body>
 </html>

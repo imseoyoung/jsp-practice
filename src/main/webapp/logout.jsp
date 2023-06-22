@@ -6,20 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-    
+<body>   
     <%
-    Cookie[] cookies = request.getCookies();
-    for (int i = 0; i < cookies.length; i++) {
-        String str = cookies[i].getName();
+    session.invalidate();
+    session = request.getSession(false);
 
-        if (str.equals("test")) {
-            cookies[i].setMaxAge(0);
-            response.addCookie(cookies[i]);
-
-            out.println("삭제된 쿠키의 속성 이름(name[" + i + "]): " + cookies[i].getName() + "<br>");
-            out.println("삭제된 쿠키의 속성 값(value[" + i + "]): " + cookies[i].getValue() + "<br>");
-        }
+    if (session == null) {
+        out.println("세션이 성공적으로 삭제되었습니다.");
+    } else {
+        out.println("세션 삭제에 실패했습니다.");
     }
     %>
 </body>
